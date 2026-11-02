@@ -428,6 +428,43 @@ h2.sec span{font-family:var(--sans);font-size:12px;color:var(--ink3);font-weight
   .runner{transition:none!important}
 }
 @keyframes fadeOnly{from{opacity:0}to{opacity:1}}
+
+/* ---- Today's orders: flashcards (v1.1) ---- */
+.deck{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:6px 18px 18px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.deck::-webkit-scrollbar{display:none}
+.fc{flex:0 0 86%;scroll-snap-align:center;height:336px;perspective:1100px;cursor:pointer;opacity:0;animation:fcIn .9s var(--spring) forwards;animation-delay:var(--dl,0ms)}
+.fc .in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s var(--spring)}
+.fc.flip .in{transform:rotateY(180deg)}
+.fc .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:26px;padding:20px 20px 18px;overflow:hidden;
+  background:radial-gradient(130% 90% at 0% 0%,var(--ca2),transparent 55%),linear-gradient(160deg,rgba(255,255,255,.075),rgba(255,255,255,.02));
+  border:1px solid var(--cb);box-shadow:0 18px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08)}
+.fc .back{transform:rotateY(180deg)}
+.fc.place .front::before{content:"";position:absolute;inset:-1px;border-radius:26px;padding:1.5px;pointer-events:none;
+  background:conic-gradient(from var(--ang,0deg),transparent 0 70%,var(--gold2),var(--cl),transparent);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:fcRing 3.2s linear infinite}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes fcRing{to{--ang:360deg}}
+@keyframes fcIn{0%{opacity:0;transform:translateY(40px) rotateX(18deg) scale(.92)}100%{opacity:1;transform:none}}
+.fc .fctop{display:flex;align-items:center;gap:12px;min-height:52px}
+.fc .fctop b{display:block;font-size:15px;letter-spacing:.01em}.fc .fctop small{display:block;margin-top:2px;color:var(--ink3);font-size:11px;letter-spacing:.14em}
+.fc .st{margin-left:auto;font-size:11px;padding:5px 10px;border-radius:99px;background:var(--glass2);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}
+.fc.place .st{color:#1a1206;background:linear-gradient(90deg,var(--gold2),var(--gold));border:0;font-weight:600}
+.fc.bought .st{color:var(--up);border-color:rgba(95,227,161,.35)}
+.fc .act{margin-top:14px;font-size:12px;letter-spacing:.2em;color:var(--ink3)}
+.fc .sym{font-family:var(--serif);font-size:34px;line-height:1.05;margin-top:4px;letter-spacing:.01em;background:linear-gradient(90deg,var(--ink),var(--cl));-webkit-background-clip:text;background-clip:text;color:transparent}
+.fc .lim{margin-top:10px;font-family:var(--serif);font-size:26px}.fc .lim span{font-family:var(--sans);font-size:12px;color:var(--ink3);margin-right:8px;letter-spacing:.08em}
+.fc .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.fc .grid div{padding:10px 12px;border-radius:14px;background:rgba(0,0,0,.22);border:1px solid var(--line)}
+.fc .grid span{display:block;font-size:10.5px;letter-spacing:.14em;color:var(--ink3)}.fc .grid b{font-size:15px;font-variant-numeric:tabular-nums}
+.fc .grid .stop b{color:var(--down)}
+.fc .why{position:absolute;left:20px;right:20px;bottom:14px;font-size:11.5px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fc .back h4{margin:4px 0 12px;font-family:var(--serif);font-weight:500;font-size:20px}
+.fc .back ol{margin:0;padding:0;list-style:none;counter-reset:s}
+.fc .back li{counter-increment:s;position:relative;padding:8px 0 8px 36px;font-size:14px;line-height:1.35;border-bottom:1px solid var(--line)}
+.fc .back li:last-child{border:0}
+.fc .back li::before{content:counter(s);position:absolute;left:0;top:7px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--ca2);color:var(--cl);border:1px solid var(--cb)}
+.fc .back b{color:var(--gold2)}
+@media (prefers-reduced-motion:reduce){.fc{animation:none;opacity:1}.fc .in{transition:none}.fc.place .front::before{animation:none}}
 </style>
 </head>
 <body>
@@ -529,7 +566,8 @@ function normalise(d){
   var rep=d.report||{};
   return {updated_at:d.updated_at||null,day:d.day||null,operation:{start:start,value:value,buffer:num(op.buffer)},agents:agents,ghost:g,
     history:(Array.isArray(d.history)?d.history:[]).slice().sort(function(a,b){return String(b.exit_date||"").localeCompare(String(a.exit_date||""))}),
-    report:{head:rep.head||null,lines:Array.isArray(rep.lines)?rep.lines:[],alerts:Array.isArray(rep.alerts)?rep.alerts:[]}}
+    report:{head:rep.head||null,lines:Array.isArray(rep.lines)?rep.lines:[],alerts:Array.isArray(rep.alerts)?rep.alerts:[]},
+    orders:Array.isArray(d.orders)?d.orders:[],orders_day:d.orders_day||null}
 }
 function statusOf(a){
   if(a.id==="G")return {k:"ghostc",t:a.open.length?"Shadowing "+a.open.length:"Shadowing"};
@@ -688,6 +726,28 @@ function card(a,i){
     '<div class="val"><b>'+rs(a.value)+'</b><span class="'+cls(ch)+'">'+(Math.abs(ch)<.5?(ghost?"notional":"level"):srs(ch))+'</span></div></div>'+
     '<div class="chips"><span class="chip '+st.k+'"><i></i>'+esc(st.t)+'</span>'+(a.closed?'<span class="chip">'+a.closed+' closed · '+a.wins+' won</span>':'')+'</div>'+opens+'</div>';
 }
+function fc(x,i){
+  var st=x.state==="place"?"To place":x.state==="bought"?"Bought "+rs2(x.fill):"Not bought";
+  var k=x.state==="place"?"place":x.state==="bought"?"bought":"skip";
+  var front='<div class="face front"><div class="fctop">'+emblem(x.agent,44)+'<div><b>'+esc(x.name)+'</b><small>'+esc(x.agent)+'</small></div><span class="st">'+esc(st)+'</span></div>'+
+    '<div class="act">BUY '+esc(x.qty)+' SHARES</div><div class="sym">'+esc(x.symbol)+'</div>'+
+    '<div class="lim"><span>LIMIT</span>'+rs2(x.limit)+'</div>'+
+    '<div class="grid"><div class="stop"><span>GTT STOP</span><b>'+rs2(x.stop)+'</b> <small style="color:var(--ink3)">−'+esc(x.stop_pct)+'%</small></div>'+
+    '<div><span>ALERTS</span><b>'+rs(x.alert12)+' · '+rs(x.alert18)+'</b></div></div>'+
+    '<div class="why">'+esc(x.why||"")+'</div></div>';
+  var back='<div class="face back"><h4>Place it in Kite</h4><ol>'+
+    '<li>Buy <b>'+esc(x.qty)+' '+esc(x.symbol)+'</b>, delivery (CNC), limit <b>'+rs2(x.limit)+'</b></li>'+
+    '<li>GTT stop-loss at <b>'+rs2(x.stop)+'</b></li>'+
+    '<li>Price alerts at <b>'+rs2(x.alert12)+'</b> (+12%) and <b>'+rs2(x.alert18)+'</b> (+18%)</li>'+
+    '<li>In Slack reply <b>'+esc(x.agent)+' done &lt;fill price&gt;</b> or <b>'+esc(x.agent)+' skip</b></li></ol></div>';
+  return '<div class="fc '+k+'" style="'+vars(x.agent)+';--dl:'+(120+i*110)+'ms" role="button" tabindex="0" aria-label="'+esc(x.name+": buy "+x.qty+" "+x.symbol)+'"><div class="in">'+front+back+'</div></div>';
+}
+function deckHTML(){
+  var o=D.orders||[];if(!o.length||D.orders_day!==todayIST())return "";
+  var n=o.filter(function(x){return x.state==="place"}).length;
+  return '<h2 class="sec">Today\'s orders<span>'+(n?n+" to place · tap to flip":"all done")+'</span></h2><div class="deck">'+o.map(fc).join("")+'</div>';
+}
+document.addEventListener("click",function(e){var f=e.target.closest&&e.target.closest(".fc");if(f)f.classList.toggle("flip")});
 function renderArena(){
   var op=D.operation,ch=op.value-op.start,chp=op.start?ch/op.start*100:0,sl=startLine(D);
   var inTrade=D.agents.filter(function(a){return a.open.length}).length,closed=D.agents.reduce(function(s,a){return s+a.closed},0);
@@ -702,6 +762,7 @@ function renderArena(){
     '<div class="total num" id="total"><small>₹</small><span id="totalN">'+(REDUCED?IN0.format(Math.round(op.value)):"0")+'</span></div>'+
     '<div class="delta"><span class="pill '+cls(ch)+'">'+(Math.abs(ch)<.5?"Level with ₹1,00,000":srs(ch)+" · "+pct(chp,2))+'</span><span class="pill">Buffer '+rs(op.buffer)+'</span></div>'+
     (sl?'<div><span class="startline"><span class="beacon"></span>'+esc(sl)+'</span></div>':(D.day?'<div><span class="startline"><span class="beacon"></span>Closing numbers · '+esc(dLong(D.day))+'</span></div>':''))+'</div>'+
+    deckHTML()+
     '<div class="stats"><div class="stat"><b>'+inTrade+'<small style="font-size:.6em;color:var(--ink3)">/10</small></b><span>In a trade</span></div><div class="stat"><b>'+closed+'</b><span>Closed trades</span></div><div class="stat"><b>'+(beat==null?"—":beat+'<small style="font-size:.6em;color:var(--ink3)">/10</small>')+'</b><span>Ahead of ghost</span></div></div>'+
     '<h2 class="sec">The race<span>tap a runner</span></h2>'+
     '<div class="panel track"><div class="lanes" id="lanes">'+marks+lanes+'</div></div>'+
