@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-03T09:09+05:30",
- "day": null,
+ "updated_at": "2026-11-03T15:49+05:30",
+ "day": "2026-11-03",
  "orders_day": "2026-11-03",
  "orders": [
   {
@@ -18,7 +18,7 @@
    "alert12": 2601.13,
    "alert18": 2740.48,
    "why": "6m risk-adj momentum 20.70, 0.9% off 52w high",
-   "state": "place",
+   "state": "not bought",
    "fill": null
   },
   {
@@ -36,7 +36,7 @@
    "alert12": 2041.36,
    "alert18": 2150.72,
    "why": "results day 2026-10-16 +8.5% on 10.3x volume, held 10 sessions. Filing: 15-Oct-2026 16:57 Outcome of Board Meeting: Tech Mahindra Limited has submitted to the Exchange, the financial results for the period ended September 30, 2026.; Yes: TECHM move on 16-Oct is from the results filing (15-Oct 16:57, after-hours so next session is R); no other company news in announcements/news or headlines. PNB likewise (16-Oct 16:24 filing, R 19-Oct).",
-   "state": "place",
+   "state": "not bought",
    "fill": null
   },
   {
@@ -54,7 +54,7 @@
    "alert12": 4322.62,
    "alert18": 4554.19,
    "why": "TATAELXSI leads Information Technology (+22.5% in a month); NIFTY IT +16.2% in 30 days",
-   "state": "place",
+   "state": "not bought",
    "fill": null
   }
  ],
@@ -232,8 +232,23 @@
  },
  "history": [],
  "report": {
-  "head": null,
-  "lines": [],
+  "head": "NAVKAR DAILY REPORT 2026-11-03 - operation Rs 100000 (+ buffer Rs 0)",
+  "lines": [
+   "A1 ANANDRATHI: no fill reported - not bought",
+   "A4 TECHM: no fill reported - not bought",
+   "A6 TATAELXSI: no fill reported - not bought",
+   "A1 Momentum: Rs 10000",
+   "A2 Breakout: Rs 10000",
+   "A3 Dip: Rs 10000",
+   "A4 Results: Rs 10000",
+   "A5 Quality: Rs 10000",
+   "A6 Sector: Rs 10000",
+   "A7 Big money: Rs 10000",
+   "A8 News: Rs 10000",
+   "A9 Levels: Rs 10000",
+   "A10 Delivery: Rs 10000",
+   "Ghost: 0 open, 0 closed, avg closed +0.00%"
+  ],
   "alerts": []
  }
 }
