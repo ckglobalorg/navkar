@@ -510,7 +510,7 @@ h2.sec span{font-family:var(--sans);font-size:12px;color:var(--ink3);font-weight
 "use strict";
 (function(){
 // ---------------------------------------------------------------- constants
-var START_DAY = "2026-11-03", FLOOR = 7500, START = 10000;
+var START_DAY = "2026-11-03", FLOOR = 15000, START = 20000;
 var REDUCED = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 var META = {
   A1:{c:"#ff8a3d",e:"mo",rule:"Buys a stock that has been among the strongest tenth of the market over six months, trades within 10% of its 52-week high, and sits above its 50- and 200-day averages."},
@@ -766,7 +766,7 @@ function renderArena(){
     '<div class="stats"><div class="stat"><b>'+inTrade+'<small style="font-size:.6em;color:var(--ink3)">/10</small></b><span>In a trade</span></div><div class="stat"><b>'+closed+'</b><span>Closed trades</span></div><div class="stat"><b>'+(beat==null?"—":beat+'<small style="font-size:.6em;color:var(--ink3)">/10</small>')+'</b><span>Ahead of ghost</span></div></div>'+
     '<h2 class="sec">The race<span>tap a runner</span></h2>'+
     '<div class="panel track"><div class="lanes" id="lanes">'+marks+lanes+'</div></div>'+
-    '<h2 class="sec">The agents<span>₹10,000 each</span></h2>'+
+    '<h2 class="sec">The dogs<span>₹20,000 each</span></h2>'+
     '<div class="cards">'+D.agents.map(card).join("")+card(g,D.agents.length)+'</div>'+
     '<div class="foot">Navkar shows. You place every order.</div>';
   countUp(op.value);
