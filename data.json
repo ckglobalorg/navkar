@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-04T09:09+05:30",
+ "updated_at": "2026-11-04T19:41+05:30",
  "day": null,
  "orders_day": "2026-11-04",
  "orders": [
@@ -18,7 +18,7 @@
    "alert12": 2613.81,
    "alert18": 2753.84,
    "why": "6m risk-adj momentum 20.81, 0.5% off 52w high",
-   "state": "place",
+   "state": "not bought",
    "fill": null
   },
   {
@@ -36,7 +36,7 @@
    "alert12": 138.2,
    "alert18": 145.6,
    "why": "results day 2026-10-19 +4.8% on 6.6x volume, held 10 sessions. Filing: 16-Oct-2026 16:24 Outcome of Board Meeting: Punjab National Bank has submitted to the Exchange, the financial results for the period ended September 30, 2026.; Confirmed: PNB move on 2026-10-19 follows its 16-Oct 16:24 results filing (after 15:30, so next session is R); UBL move on 2026-10-28 follows its 27-Oct 21:14 results filing; no other news in announcements/news/headlines explains either.",
-   "state": "place",
+   "state": "not bought",
    "fill": null
   },
   {
@@ -54,7 +54,7 @@
    "alert12": 2854.97,
    "alert18": 3007.91,
    "why": "TCS leads Information Technology (+20.4% in a month); NIFTY IT +14.4% in 30 days",
-   "state": "place",
+   "state": "not bought",
    "fill": null
   }
  ],
