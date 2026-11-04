@@ -1,60 +1,60 @@
 {
- "updated_at": "2026-11-03T15:49+05:30",
- "day": "2026-11-03",
- "orders_day": "2026-11-03",
+ "updated_at": "2026-11-04T09:09+05:30",
+ "day": null,
+ "orders_day": "2026-11-04",
  "orders": [
   {
    "agent": "A1",
    "name": "Momentum",
    "symbol": "ANANDRATHI",
    "qty": 2,
-   "limit": 2322.44,
+   "limit": 2333.76,
    "zone": [
-    2254.13,
-    2322.44
+    2265.12,
+    2333.76
    ],
-   "stop": 2143.5,
-   "stop_pct": 7.7,
-   "alert12": 2601.13,
-   "alert18": 2740.48,
-   "why": "6m risk-adj momentum 20.70, 0.9% off 52w high",
-   "state": "not bought",
+   "stop": 2164.9,
+   "stop_pct": 7.2,
+   "alert12": 2613.81,
+   "alert18": 2753.84,
+   "why": "6m risk-adj momentum 20.81, 0.5% off 52w high",
+   "state": "place",
    "fill": null
   },
   {
    "agent": "A4",
    "name": "Results",
-   "symbol": "TECHM",
-   "qty": 2,
-   "limit": 1822.64,
+   "symbol": "PNB",
+   "qty": 40,
+   "limit": 123.39,
    "zone": [
-    1769.03,
-    1822.64
+    119.76,
+    123.39
    ],
-   "stop": 1731.51,
+   "stop": 117.22,
    "stop_pct": 5.0,
-   "alert12": 2041.36,
-   "alert18": 2150.72,
-   "why": "results day 2026-10-16 +8.5% on 10.3x volume, held 10 sessions. Filing: 15-Oct-2026 16:57 Outcome of Board Meeting: Tech Mahindra Limited has submitted to the Exchange, the financial results for the period ended September 30, 2026.; Yes: TECHM move on 16-Oct is from the results filing (15-Oct 16:57, after-hours so next session is R); no other company news in announcements/news or headlines. PNB likewise (16-Oct 16:24 filing, R 19-Oct).",
-   "state": "not bought",
+   "alert12": 138.2,
+   "alert18": 145.6,
+   "why": "results day 2026-10-19 +4.8% on 6.6x volume, held 10 sessions. Filing: 16-Oct-2026 16:24 Outcome of Board Meeting: Punjab National Bank has submitted to the Exchange, the financial results for the period ended September 30, 2026.; Confirmed: PNB move on 2026-10-19 follows its 16-Oct 16:24 results filing (after 15:30, so next session is R); UBL move on 2026-10-28 follows its 27-Oct 21:14 results filing; no other news in announcements/news/headlines explains either.",
+   "state": "place",
    "fill": null
   },
   {
    "agent": "A6",
    "name": "Sector",
-   "symbol": "TATAELXSI",
+   "symbol": "TCS",
    "qty": 1,
-   "limit": 3859.48,
+   "limit": 2549.08,
    "zone": [
-    3745.96,
-    3859.48
+    2474.11,
+    2549.08
    ],
-   "stop": 3642.9,
-   "stop_pct": 5.6,
-   "alert12": 4322.62,
-   "alert18": 4554.19,
-   "why": "TATAELXSI leads Information Technology (+22.5% in a month); NIFTY IT +16.2% in 30 days",
-   "state": "not bought",
+   "stop": 2408.2,
+   "stop_pct": 5.5,
+   "alert12": 2854.97,
+   "alert18": 3007.91,
+   "why": "TCS leads Information Technology (+20.4% in a month); NIFTY IT +14.4% in 30 days",
+   "state": "place",
    "fill": null
   }
  ],
@@ -232,23 +232,8 @@
  },
  "history": [],
  "report": {
-  "head": "NAVKAR DAILY REPORT 2026-11-03 - operation Rs 100000 (+ buffer Rs 0)",
-  "lines": [
-   "A1 ANANDRATHI: no fill reported - not bought",
-   "A4 TECHM: no fill reported - not bought",
-   "A6 TATAELXSI: no fill reported - not bought",
-   "A1 Momentum: Rs 10000",
-   "A2 Breakout: Rs 10000",
-   "A3 Dip: Rs 10000",
-   "A4 Results: Rs 10000",
-   "A5 Quality: Rs 10000",
-   "A6 Sector: Rs 10000",
-   "A7 Big money: Rs 10000",
-   "A8 News: Rs 10000",
-   "A9 Levels: Rs 10000",
-   "A10 Delivery: Rs 10000",
-   "Ghost: 0 open, 0 closed, avg closed +0.00%"
-  ],
+  "head": null,
+  "lines": [],
   "alerts": []
  }
 }
